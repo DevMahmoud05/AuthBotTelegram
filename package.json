@@ -1,0 +1,25 @@
+{
+  "name": "api_ts_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.2",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "mongoose": "^8.1.1",
+    "node-telegram-bot-api": "^0.63.0",
+    "request": "^2.88.2",
+    "request-ip": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
