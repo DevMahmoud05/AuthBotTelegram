@@ -170,19 +170,23 @@ bot.onText(/\/user/, async (msg) => {
       if (recent) {
         urls = recent.key.join("\n");
       }
-      return bot.sendMessage(
-        chatId,
-        `
-id: ${user.id}
-code: ${user.code}
-points: ${user.points}\n
-Recent Search:
-${urls}
-`,
-        {
-          parse_mode: "HTML",
-        }
-      );
+         // Construct the message
+      const message = `
+    id: ${user.id}
+    code: ${user.code}
+    points: ${user.points}\n
+    Recent Search:
+    ${urls}
+    `;
+      const MAX_MESSAGE_LENGTH = 4096;
+      const messageChunks = [];
+      for (let i = 0; i < message.length; i += MAX_MESSAGE_LENGTH) {
+        messageChunks.push(message.substring(i, i + MAX_MESSAGE_LENGTH));
+      }
+      // Send each chunk separately
+      for (const chunk of messageChunks) {
+        await bot.sendMessage(chatId, chunk, { parse_mode: "HTML" });
+      }
     });
   } catch (error) {
     console.log("Error", error);
