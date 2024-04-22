@@ -23,9 +23,10 @@ app.use(limiter);
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
+  let userName = "";
   const chatId = msg.chat.id;
-  if (msg.chat.first_name || msg.chat.last_name) {
-    userName = `${msg.chat.first_name} ${msg.chat.last_name}`;
+  if (msg.chat.first_name) {
+    userName = `${msg.chat.first_name}`;
   }
   const message = `Welcome, ${
     userName ? userName : "Admin"
